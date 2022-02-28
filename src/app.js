@@ -25,13 +25,6 @@ camera.position.set(0, 2.5, 10);
 const helper = new THREE.GridHelper();
 scene.add(helper);
 
-// create an object
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
-const cube = new THREE.Mesh(geometry, material);
-
-scene.add(cube);
-
 // create function to resize the canvas whenever the screen changes
 window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
@@ -40,6 +33,14 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 /* END INIT */
+
+/* Add objects init */
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+const cube = new THREE.Mesh(geometry, material);
+
+scene.add(cube);
+/* END Add objects init */
 
 // add the "game loop" function -> should be a recursive function hold by requestAnimationFrame
 function animate() {
