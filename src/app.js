@@ -1,6 +1,6 @@
 import "../style.css";
 import * as THREE from "three";
-import { gridHelper, onWindowResize } from "./utils";
+import { gridHelper, onWindowResize, axesHelper } from "./utils";
 import { Geometry } from "./Geometry";
 
 let scene, renderer, camera;
@@ -26,6 +26,7 @@ export function init() {
   camera.position.set(0, 2.5, 10);
 
   gridHelper(scene);
+  axesHelper(scene);
   Geometry(scene);
 }
 /* END INIT */

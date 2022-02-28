@@ -1,1 +1,1 @@
-export { gridHelper, onWindowResize } from "./utils.js";
+export { gridHelper, onWindowResize, axesHelper } from "./utils.js";
