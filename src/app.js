@@ -25,13 +25,9 @@ camera.position.set(0, 2.5, 10);
 const helper = new THREE.GridHelper();
 scene.add(helper);
 
-// create function to resize the canvas whenever the screen changes
-window.addEventListener("resize", onWindowResize);
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
+const axesHelper = new THREE.AxesHelper(5);
+axesHelper.setColors("red", "blue", "green");
+scene.add(axesHelper);
 /* END INIT */
 
 /* Add objects init */
@@ -47,6 +43,14 @@ function animate() {
   requestAnimationFrame(animate);
 
   renderer.render(scene, camera);
+}
+
+// create function to resize the canvas whenever the screen changes
+window.addEventListener("resize", onWindowResize);
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 // Call the animate function
