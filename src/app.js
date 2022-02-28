@@ -5,12 +5,8 @@ import { Geometry } from "./Geometry";
 
 let scene, renderer, camera;
 
-init();
-animate();
-window.addEventListener("resize", () => onWindowResize(camera, renderer));
-
 /* INIT */
-function init() {
+export function init() {
   // create a scene with a webGL renderer and a camera
   scene = new THREE.Scene();
 
@@ -35,8 +31,10 @@ function init() {
 /* END INIT */
 
 // add the "game loop" function -> should be a recursive function hold by requestAnimationFrame
-function animate() {
+export function animate() {
   requestAnimationFrame(animate);
 
   renderer.render(scene, camera);
 }
+
+window.addEventListener("resize", () => onWindowResize(camera, renderer));

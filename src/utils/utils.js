@@ -2,7 +2,6 @@ import * as THREE from "three";
 
 // create function to resize the canvas whenever the screen changes
 export function onWindowResize(camera, renderer) {
-  console.log(1);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
