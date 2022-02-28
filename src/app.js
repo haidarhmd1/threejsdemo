@@ -2,10 +2,6 @@ import "../style.css";
 
 import * as THREE from "three";
 
-// Set consts
-const SCREEN_WIDTH = window.innerWidth;
-const SCREEN_HEIGHT = window.innerHeight;
-
 /* INIT */
 // create a scene with a webGL renderer and a camera
 const scene = new THREE.Scene();
@@ -13,13 +9,13 @@ const scene = new THREE.Scene();
 // create renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // create a camera
 const camera = new THREE.PerspectiveCamera(
   55,
-  SCREEN_WIDTH / SCREEN_HEIGHT,
+  window.innerWidth / window.innerHeight,
   1,
   3000
 );
@@ -39,11 +35,10 @@ scene.add(cube);
 // create function to resize the canvas whenever the screen changes
 window.addEventListener("resize", onWindowResize);
 function onWindowResize() {
-  camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
-
 /* END INIT */
 
 // add the "game loop" function -> should be a recursive function hold by requestAnimationFrame
