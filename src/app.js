@@ -26,7 +26,7 @@ const helper = new THREE.GridHelper();
 scene.add(helper);
 
 const axesHelper = new THREE.AxesHelper(5);
-axesHelper.setColors("red", "blue", "green");
+axesHelper.setColors("red", "blue", "green"); //x, y ,z
 scene.add(axesHelper);
 /* END INIT */
 
