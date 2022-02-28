@@ -1,9 +1,10 @@
 import "../style.css";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { gridHelper, onWindowResize, axesHelper } from "./utils";
 import { Geometry } from "./Geometry";
 
-let scene, renderer, camera;
+let scene, renderer, camera, controls;
 
 /* INIT */
 export function init() {
@@ -25,6 +26,10 @@ export function init() {
   );
   camera.position.set(0, 2.5, 10);
 
+  // Orbit controls
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.update();
+
   gridHelper(scene);
   axesHelper(scene);
   Geometry(scene);
@@ -35,6 +40,7 @@ export function init() {
 export function animate() {
   requestAnimationFrame(animate);
 
+  controls.update();
   renderer.render(scene, camera);
 }
 
