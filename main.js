@@ -13,7 +13,7 @@ document.body.appendChild(renderer.domElement);
 
 // create a camera
 const camera = new THREE.PerspectiveCamera(
-  500,
+  75,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
