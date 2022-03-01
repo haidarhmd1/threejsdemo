@@ -2,12 +2,14 @@ import "../style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { gridHelper, onWindowResize, axesHelper } from "./utils";
-import { Geometry } from "./Geometry";
+import { Cube, Plane } from "./Geometry";
 
-let scene, renderer, camera, controls;
+let scene: THREE.Scene, renderer: THREE.WebGLRenderer, camera: THREE.PerspectiveCamera, controls: OrbitControls;
+const cube = new Cube();
+const plane = new Plane();
 
 /* INIT */
-export function init() {
+export function init(): any {
   // create a scene with a webGL renderer and a camera
   scene = new THREE.Scene();
 
@@ -15,6 +17,16 @@ export function init() {
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+  
+  //Create a DirectionalLight and turn on shadows for the light
+  const light = new THREE.DirectionalLight( 0xffffff, 5 );
+  light.position.set( 2, 10, -25 ); //default; light shining from top
+  light.castShadow = true; // default false
+  scene.add( light );
+
   document.body.appendChild(renderer.domElement);
 
   // create a camera
@@ -32,15 +44,19 @@ export function init() {
 
   gridHelper(scene);
   axesHelper(scene);
-  Geometry(scene);
+
+  cube.addCube({ scene });
+  cube.getCube().position.set(0, 1, 0);
+  plane.addPlane({ scene });
 }
 /* END INIT */
 
 // add the "game loop" function -> should be a recursive function hold by requestAnimationFrame
-export function animate() {
+export function animate(): any {
   requestAnimationFrame(animate);
-
-  controls.update();
+  
+  cube.getCube().rotation.x += 0.01;
+  // plane.getPlane().position.z += 0.1;
   renderer.render(scene, camera);
 }
 
