@@ -7,6 +7,7 @@ import { Cube, Plane } from "./Geometry";
 let scene: THREE.Scene, renderer: THREE.WebGLRenderer, camera: THREE.PerspectiveCamera, controls: OrbitControls;
 const cube = new Cube();
 const plane = new Plane();
+const plane_2 = new Plane();
 
 /* INIT */
 export function init(): any {
@@ -48,6 +49,8 @@ export function init(): any {
   cube.addCube({ scene });
   cube.getCube().position.set(0, 1, 0);
   plane.addPlane({ scene });
+  plane_2.addPlane({ scene });
+  plane_2.getPlane().position.set(0, 0, 15);
 }
 /* END INIT */
 
@@ -55,8 +58,12 @@ export function init(): any {
 export function animate(): any {
   requestAnimationFrame(animate);
   
-  cube.getCube().rotation.x += 0.01;
-  // plane.getPlane().position.z += 0.1;
+  // cube.getCube().rotation.x += 0.01;
+
+  // plane.getPlane().position.z += 0.01
+  // if(plane.getPlane().position.z - plane_2.getPlane().position.z >= -10) {
+  //   plane.getPlane().remove()
+  // }
   renderer.render(scene, camera);
 }
 
